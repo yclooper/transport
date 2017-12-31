@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.transport.dao.ConsignerMapper">
+    <select id="findConsignerByTransportId" parameterType="java.lang.Integer"
+            resultType="com.transport.entity.Consigner">
+        select * from transport_consigner_info where transport_id=#{id}
+    </select>
+
+    <insert id="insert" parameterType="com.transport.entity.Consigner">
+
+
+        INSERT INTO transport_consigner_info (id,transport_id,starting_place,ending_place,count,remark,state,create_date,update_date,NAME ,phone)
+        VALUES (#{id},#{transport_id},#{starting_place},#{ending_place},#{count},#{remark},#{state},#{create_date},#{update_date},#{name},#{phone})
+    </insert>
+
+    <update id="update" parameterType="com.transport.entity.Consigner">
+        UPDATE transport_consigner_info set (remark,update_date) VALUES (#{remark},#{update_date} WHERE transport_id=#{transport_id});
+    </update>
+</mapper>
