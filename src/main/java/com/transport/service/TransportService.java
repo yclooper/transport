@@ -19,9 +19,9 @@ public interface TransportService {
 
 //    public int getCount(int carId) throws SQLException;
 //
-    void editInfo(TransportInfo transportInfo);
+    void update(TransportInfo transportInfo);
 //
-    void addInfo(TransportInfo transportInfo);
+    void insert(TransportInfo transportInfo);
 //
 //    Cost getMoneyCount(String carNumber) throws SQLException;
 //

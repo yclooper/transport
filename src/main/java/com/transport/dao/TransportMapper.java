@@ -18,7 +18,7 @@ public interface TransportMapper {
 
 //    public int getCount(int carId) throws SQLException;
 //
-    void editInfo(TransportInfo transportInfo);
+    void update(TransportInfo transportInfo);
 //
     Integer addInfo(TransportInfo transportInfo);
 //

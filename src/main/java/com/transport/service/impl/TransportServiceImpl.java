@@ -3,7 +3,6 @@ package com.transport.service.impl;
 import com.transport.dao.ConsignerMapper;
 import com.transport.dao.TransportMapper;
 import com.transport.entity.*;
-import com.transport.service.CarService;
 import com.transport.service.TransportService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,11 +34,11 @@ public class TransportServiceImpl implements TransportService {
 //        return transportMapper.getCount(carId);
 //    }
 //
-    public void editInfo(TransportInfo transportInfo) {
-        transportMapper.editInfo(transportInfo);
+    public void update(TransportInfo transportInfo) {
+        transportMapper.update(transportInfo);
     }
 
-    public void addInfo(TransportInfo transportInfo) {
+    public void insert(TransportInfo transportInfo) {
 
     }
 

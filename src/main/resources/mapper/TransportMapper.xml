@@ -19,4 +19,8 @@
         (id,car_id,user_id,gasoline_cost,road_cost,ferry_cost,state,create_date,update_date,weight) VALUES
         (#{id},#{car_id},#{user_id},#{gasoline_cost},#{road_cost},#{ferry_cost},#{state},#{create_date},#{update_date},#{weight})
     </insert>
+
+    <update id="update" parameterType="com.transport.entity.TransportInfo">
+        UPDATE transport_info set state=#{state},update_date=#{update_date} where id=#{id}
+    </update>
 </mapper>

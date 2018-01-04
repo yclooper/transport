@@ -14,6 +14,6 @@
     </insert>
 
     <update id="update" parameterType="com.transport.entity.Consigner">
-        UPDATE transport_consigner_info set (remark,update_date) VALUES (#{remark},#{update_date} WHERE transport_id=#{transport_id});
+        UPDATE transport_consigner_info set remark=#{remark},update_date=#{update_date} WHERE transport_id=#{transport_id};
     </update>
 </mapper>

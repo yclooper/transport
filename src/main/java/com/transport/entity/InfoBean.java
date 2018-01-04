@@ -10,8 +10,6 @@ public class InfoBean {
 
     private int id;
 
-    private int transport_id;
-
     private int user_id;
 
     private String user_name;
@@ -73,6 +71,16 @@ public class InfoBean {
 
     private BigDecimal ferry_cost;
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    private int type;
+
 
     public int getId() {
         return id;
@@ -82,13 +90,6 @@ public class InfoBean {
         this.id = id;
     }
 
-    public int getTransport_id() {
-        return transport_id;
-    }
-
-    public void setTransport_id(int transport_id) {
-        this.transport_id = transport_id;
-    }
 
     public String getStarting_place() {
         return starting_place;
@@ -175,7 +176,6 @@ public class InfoBean {
     public String toString() {
         return "InfoBean{" +
                 "id=" + id +
-                ", transport_id=" + transport_id +
                 ", user_id=" + user_id +
                 ", user_name='" + user_name + '\'' +
                 ", state=" + state +
