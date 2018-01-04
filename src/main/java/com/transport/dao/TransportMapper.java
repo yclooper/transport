@@ -16,11 +16,11 @@ public interface TransportMapper {
     public List<InfoBean> findTransportListInfoByCarId(int car_id) throws SQLException;
 
 
-//    public int getCount(int carId) throws SQLException;
+    public int getCount(int carId);
 //
     void update(TransportInfo transportInfo);
 //
-    Integer addInfo(TransportInfo transportInfo);
+    Integer insert(TransportInfo transportInfo);
 //
 //    Cost getMoneyCount(String carNumber) throws SQLException;
 //

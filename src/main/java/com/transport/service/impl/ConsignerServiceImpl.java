@@ -20,7 +20,7 @@ public class ConsignerServiceImpl implements ConsignerService {
         return consignerMapper.findConsignerByTransportId(tspId);
     }
 
-    public void addTransportConsignerInfo(Consigner consigner) {
+    public void insert(Consigner consigner) {
         consignerMapper.insert(consigner);
     }
 

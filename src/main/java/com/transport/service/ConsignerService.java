@@ -9,7 +9,7 @@ public interface ConsignerService {
 
     public Consigner findConsignerByTransportId(int tspId);
 
-    public void addTransportConsignerInfo(Consigner consigner);
+    public void insert(Consigner consigner);
 
     public void update(Consigner consigner);
 }

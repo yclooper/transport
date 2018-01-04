@@ -10,15 +10,7 @@ import java.util.List;
  */
 public interface UserMapper {
 
-    public User findUserByCarId(int carId) throws SQLException;
+    public List<User> findAllUser();
 
-    public User findUserById(int id) throws SQLException;
-
-    public User findUserByCarNo(String carNumber) throws SQLException;
-
-    public User findUserByName(String name) throws SQLException;
-
-    public int addUser(User user) throws SQLException;
-
-    public List<User> findAllUser() throws SQLException;
+    User findUserByName(String name);
 }

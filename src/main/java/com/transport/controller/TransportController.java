@@ -3,8 +3,10 @@ package com.transport.controller;
 import com.transport.entity.Consigner;
 import com.transport.entity.InfoBean;
 import com.transport.entity.TransportInfo;
+import com.transport.entity.User;
 import com.transport.service.ConsignerService;
 import com.transport.service.TransportService;
+import com.transport.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +32,9 @@ public class TransportController {
 
     @Resource
     private ConsignerService consignerService;
+
+    @Resource
+    private UserService userService;
 
     @ResponseBody
     @RequestMapping(value = "/findListInfo")
@@ -60,19 +65,35 @@ public class TransportController {
             Consigner consigner = new Consigner();
             if (infoBean.getType() == 1) {//新增
                 transportInfo.setCar_id(infoBean.getCar_id());
-                transportInfo.setUser_id(infoBean.getUser_id());
+
+                User driver = userService.findUserByName(infoBean.getUser_name());
+
+                if (driver != null) {
+                    transportInfo.setUser_id(driver.getId());
+                }
                 transportInfo.setGasoline_cost(infoBean.getGasoline_cost());
                 transportInfo.setRoad_cost(infoBean.getRoad_cost());
                 transportInfo.setFerry_cost(infoBean.getFerry_cost());
-                transportInfo.setState(infoBean.getState());
+                transportInfo.setWeight(infoBean.getWeight());
                 transportInfo.setCreate_date(date);
                 transportInfo.setUpdate_date(date);
-                transportInfo.setWeight(infoBean.getWeight());
-
+                transportInfo.setState(infoBean.getState());
                 transportService.insert(transportInfo);
-//                consigner = consignerService.findConsignerByTransportId(transportInfo.getId());
-                consignerService.addTransportConsignerInfo(consigner);
 
+
+                consigner.setCount(infoBean.getCount());
+                consigner.setStarting_place(infoBean.getStarting_place());
+                consigner.setEnding_place(infoBean.getEnding_place());
+                consigner.setState(0);
+                consigner.setName(infoBean.getName());
+                consigner.setPhone(infoBean.getPhone());
+                consigner.setRemark(infoBean.getRemark());
+                consigner.setCreate_date(date);
+                consigner.setUpdate_date(date);
+                consigner.setTransport_id(transportInfo.getId());
+                consignerService.insert(consigner);
+
+                map.put("code", 1);
 
             } else if (infoBean.getType() == 2) {//修改
                 transportInfo.setId(infoBean.getId());
