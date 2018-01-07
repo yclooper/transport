@@ -22,9 +22,15 @@ public class TransportServiceImpl implements TransportService {
     @Resource
     private TransportMapper transportMapper;
 
-    public List<InfoBean> findTransportListInfoByCarId(int car_id) throws SQLException {
+    public List<InfoBean> findTransportListInfoByCarId(int car_id,int page){
+        int count = transportMapper.getCount(car_id);
+        PageBean pageBean = new PageBean(page, count);
+        List<InfoBean> list = transportMapper.findTransportListInfoByCarId(car_id, pageBean.getCurrentCount(), pageBean.getPageNum());
+        return list;
+    }
 
-        return transportMapper.findTransportListInfoByCarId(car_id);
+    public int getCount(int carId) {
+        return transportMapper.getCount(carId);
     }
 
 
@@ -39,6 +45,10 @@ public class TransportServiceImpl implements TransportService {
     public int insert(TransportInfo transportInfo) {
 
         return transportMapper.insert(transportInfo);
+    }
+
+    public Cost calCost(int carId) {
+        return transportMapper.countCost(carId);
     }
 
 

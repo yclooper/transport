@@ -1,9 +1,6 @@
 package com.transport.controller;
 
-import com.transport.entity.Consigner;
-import com.transport.entity.InfoBean;
-import com.transport.entity.TransportInfo;
-import com.transport.entity.User;
+import com.transport.entity.*;
 import com.transport.service.ConsignerService;
 import com.transport.service.TransportService;
 import com.transport.service.UserService;
@@ -14,11 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.sql.SQLException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by chen on 2017/12/30.
@@ -38,17 +31,19 @@ public class TransportController {
 
     @ResponseBody
     @RequestMapping(value = "/findListInfo")
-    public Map<String, Object> findInfoBeanList(int car_id) throws SQLException {
+    public Map<String, Object> findInfoBeanList(int car_id, int page) {
 
         Map map = new HashMap<String, Object>();
-        List<InfoBean> infoBeans = transportService.findTransportListInfoByCarId(car_id);
 
-        if (infoBeans != null) {
-            map.put("list", infoBeans);
+        try {
+            List<InfoBean> infoBeans = transportService.findTransportListInfoByCarId(car_id, page);
+            map.put("list", infoBeans == null ? new ArrayList<InfoBean>() : infoBeans);
             map.put("code", 1);
-        } else {
+        } catch (Exception e) {
             map.put("code", 0);
+            map.put("code", new ArrayList<InfoBean>());
         }
+
         return map;
     }
 
@@ -115,5 +110,19 @@ public class TransportController {
         }
 
         return map;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/costMoney")
+    public Cost calCost(int carId) {
+        Cost cost = null;
+        try {
+            cost = transportService.calCost(carId);
+            cost.setCode(1);
+        } catch (Exception e) {
+            cost = new Cost();
+            cost.setCode(0);
+        }
+        return cost;
     }
 }

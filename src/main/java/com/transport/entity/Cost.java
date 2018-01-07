@@ -1,11 +1,14 @@
 package com.transport.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * Created by chen on 2017/12/26.
  */
-public class Cost {
+public class Cost implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     public int getCode() {
         return code;

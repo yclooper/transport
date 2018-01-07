@@ -31,10 +31,11 @@ public class DemoTest {
 
     @Test
     public void fun2() throws SQLException {
-        List<InfoBean> transportListInfoByCarId = transportService.findTransportListInfoByCarId(1);
+        List<InfoBean> transportListInfoByCarId = transportService.findTransportListInfoByCarId(1,1);
         for (int i = 0; i < transportListInfoByCarId.size(); i++) {
             System.out.println(transportListInfoByCarId.get(i));
         }
+        System.out.println(transportListInfoByCarId.size());
 
     }
 }

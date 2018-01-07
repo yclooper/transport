@@ -1,9 +1,6 @@
 package com.transport.dao;
 
-import com.transport.entity.Cost;
-import com.transport.entity.InfoBean;
-import com.transport.entity.TransportInfo;
-import com.transport.entity.TransportTrns;
+import com.transport.entity.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -13,14 +10,18 @@ import java.util.List;
  */
 public interface TransportMapper {
 
-    public List<InfoBean> findTransportListInfoByCarId(int car_id) throws SQLException;
+    public List<InfoBean> findTransportListInfoByCarId(int car_id, int currentNum,int pageNumber);
 
 
     public int getCount(int carId);
-//
-    void update(TransportInfo transportInfo);
-//
-    Integer insert(TransportInfo transportInfo);
+
+    //
+    public void update(TransportInfo transportInfo);
+
+    //
+    public Integer insert(TransportInfo transportInfo);
+
+    Cost countCost(int carId);
 //
 //    Cost getMoneyCount(String carNumber) throws SQLException;
 //
