@@ -24,6 +24,8 @@ public interface TransportService {
 
     Cost calCost(int carId);
 
+    void updateLocation(int carId, String location);
+
 //
 //    Cost getMoneyCount(String carNumber) throws SQLException;
 //

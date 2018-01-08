@@ -125,4 +125,18 @@ public class TransportController {
         }
         return cost;
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/updateLocation")
+    public Map<String, Object> updateLocation(int carId, String location) {
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            transportService.updateLocation(carId, location);
+            map.put("code", 1);
+        } catch (Exception e) {
+            map.put("code", 0);
+        }
+        return map;
+    }
 }

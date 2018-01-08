@@ -33,11 +33,6 @@ public class TransportServiceImpl implements TransportService {
         return transportMapper.getCount(carId);
     }
 
-
-    //    public int getCount(int carId) throws SQLException {
-//        return transportMapper.getCount(carId);
-//    }
-//
     public void update(TransportInfo transportInfo) {
         transportMapper.update(transportInfo);
     }
@@ -51,16 +46,13 @@ public class TransportServiceImpl implements TransportService {
         return transportMapper.countCost(carId);
     }
 
+    public void updateLocation(int carId, String location) {
+        TransportTrns transportTrns=new TransportTrns();
 
-//    public Cost getMoneyCount(String carNumber) throws SQLException {
-//        return transportMapper.getMoneyCount(carNumber);
-//    }
-//
-//    public void updateLocation(TransportTrns transportTrns) throws SQLException {
-//        transportMapper.updateLocation(transportTrns);
-//    }
-//
-//    public TransportInfo findTransportByCarNumber(String carNumber) throws SQLException {
-//        return null;
-//    }
+        TransportInfo transportInfo = transportMapper.findTransportInfoByCarId(carId);
+        transportTrns.setTransport_id(transportInfo.getId());
+        transportTrns.setLocation_place(location);
+        transportMapper.updateLocation(transportTrns);
+    }
+
 }
