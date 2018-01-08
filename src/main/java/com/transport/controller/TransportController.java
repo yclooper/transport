@@ -148,7 +148,7 @@ public class TransportController {
 
     @ResponseBody
     @RequestMapping(value = "/updateCost")
-    public Map<String, Object> updateCost(TransportInfo transportInfo) {
+    public Map<String, Object> updateCost(@RequestBody TransportInfo transportInfo) {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             transportService.updateCost(transportInfo);
