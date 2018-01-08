@@ -22,7 +22,7 @@ public class TransportServiceImpl implements TransportService {
     @Resource
     private TransportMapper transportMapper;
 
-    public List<InfoBean> findTransportListInfoByCarId(int car_id,int page){
+    public List<InfoBean> findTransportListInfoByCarId(int car_id, int page) {
         int count = transportMapper.getCount(car_id);
         PageBean pageBean = new PageBean(page, count);
         List<InfoBean> list = transportMapper.findTransportListInfoByCarId(car_id, pageBean.getCurrentCount(), pageBean.getPageNum());
@@ -47,12 +47,20 @@ public class TransportServiceImpl implements TransportService {
     }
 
     public void updateLocation(int carId, String location) {
-        TransportTrns transportTrns=new TransportTrns();
+        TransportTrns transportTrns = new TransportTrns();
 
         TransportInfo transportInfo = transportMapper.findTransportInfoByCarId(carId);
         transportTrns.setTransport_id(transportInfo.getId());
         transportTrns.setLocation_place(location);
         transportMapper.updateLocation(transportTrns);
+    }
+
+    public TransportInfo findTransportInfoByCarId(int carId) {
+        return transportMapper.findTransportInfoByCarId(carId);
+    }
+
+    public void updateCost(TransportInfo transportInfo) {
+        transportMapper.updateCost(transportInfo);
     }
 
 }

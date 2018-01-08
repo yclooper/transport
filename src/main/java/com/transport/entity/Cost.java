@@ -6,9 +6,17 @@ import java.math.BigDecimal;
 /**
  * Created by chen on 2017/12/26.
  */
-public class Cost implements Serializable{
+public class Cost implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+
+    private int code;
+    private BigDecimal ferry_cost;
+
+    private BigDecimal road_cost;
+
+    private BigDecimal gasoline_cost;
 
     public int getCode() {
         return code;
@@ -18,45 +26,27 @@ public class Cost implements Serializable{
         this.code = code;
     }
 
-    private int code;
-    private BigDecimal ferry_cost_total;
-
-    private BigDecimal road_cost_total;
-
-    private BigDecimal gasoline_cost_total;
-
-    public BigDecimal getFerry_cost_total() {
-        return ferry_cost_total;
+    public BigDecimal getFerry_cost() {
+        return ferry_cost;
     }
 
-    public void setFerry_cost_total(BigDecimal ferry_cost_total) {
-        this.ferry_cost_total = ferry_cost_total;
+    public void setFerry_cost(BigDecimal ferry_cost) {
+        this.ferry_cost = ferry_cost;
     }
 
-    public BigDecimal getRoad_cost_total() {
-        return road_cost_total;
+    public BigDecimal getRoad_cost() {
+        return road_cost;
     }
 
-    public void setRoad_cost_total(BigDecimal road_cost_total) {
-        this.road_cost_total = road_cost_total;
+    public void setRoad_cost(BigDecimal road_cost) {
+        this.road_cost = road_cost;
     }
 
-    public BigDecimal getGasoline_cost_total() {
-        return gasoline_cost_total;
+    public BigDecimal getGasoline_cost() {
+        return gasoline_cost;
     }
 
-
-    public void setGasoline_cost_total(BigDecimal gasoline_cost_total) {
-        this.gasoline_cost_total = gasoline_cost_total;
-    }
-
-    @Override
-    public String toString() {
-        return "Cost{" +
-                "code=" + code +
-                ", ferry_cost_total=" + ferry_cost_total +
-                ", road_cost_total=" + road_cost_total +
-                ", gasoline_cost_total=" + gasoline_cost_total +
-                '}';
+    public void setGasoline_cost(BigDecimal gasoline_cost) {
+        this.gasoline_cost = gasoline_cost;
     }
 }

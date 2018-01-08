@@ -25,6 +25,7 @@
     select sum(gasoline_cost) as gasoline_cost_total,sum(road_cost) as road_cost_total,sum(ferry_cost) as ferry_cost_total from transport_info where car_id=#{id} AND state!=2
     </select>
 
+
     <insert id="updateLocation" parameterType="com.transport.entity.TransportTrns">
         INSERT INTO transport_trns (id,transport_id,location_place,create_date)
         VALUES (#{id},#{transport_id},#{location_place},now())
@@ -32,6 +33,10 @@
 
     <select id="findTransportInfoByCarId" parameterType="java.lang.Integer"
             resultType="com.transport.entity.TransportInfo">
-        select * from transport_info where car_id=#{car_id} and state=1
+        select * from transport_info where car_id=#{car_id} and state!=2
     </select>
+
+    <update id="updateCost" parameterType="com.transport.entity.TransportInfo">
+        UPDATE transport_info set gasoline_cost=#{gasoline_cost},road_cost_total=#{road_cost_total},ferry_cost=#{ferry_cost} WHERE id=#{id}
+    </update>
 </mapper>

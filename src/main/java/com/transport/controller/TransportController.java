@@ -113,8 +113,8 @@ public class TransportController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/costMoney")
-    public Cost calCost(int carId) {
+    @RequestMapping(value = "/countMoney")
+    public Cost countMoney(int carId) {
         Cost cost = null;
         try {
             cost = transportService.calCost(carId);
@@ -124,6 +124,12 @@ public class TransportController {
             cost.setCode(0);
         }
         return cost;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/costMoney")
+    public TransportInfo calCost(int carId) {
+        return transportService.findTransportInfoByCarId(carId);
     }
 
     @ResponseBody
@@ -139,4 +145,17 @@ public class TransportController {
         }
         return map;
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/updateCost")
+    public Map<String, Object> updateCost(TransportInfo transportInfo) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            transportService.updateCost(transportInfo);
+        } catch (Exception e) {
+            map.put("code", 0);
+        }
+        return map;
+    }
+
 }

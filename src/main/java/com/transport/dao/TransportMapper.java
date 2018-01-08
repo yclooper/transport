@@ -26,6 +26,8 @@ public interface TransportMapper {
     void updateLocation(TransportTrns transportTrns);
 
     TransportInfo findTransportInfoByCarId(int carId);
+
+    void updateCost(TransportInfo transportInfo);
 //
 //    Cost getMoneyCount(String carNumber) throws SQLException;
 //
