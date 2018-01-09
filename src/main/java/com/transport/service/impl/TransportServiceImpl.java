@@ -63,4 +63,14 @@ public class TransportServiceImpl implements TransportService {
         transportMapper.updateCost(transportInfo);
     }
 
+    public List<InfoBean> findInfoListByState(int state, int page) {
+        int count = transportMapper.getCountByState(state);
+        PageBean pageBean = new PageBean(page, count);
+        List<InfoBean> list = transportMapper.findTransportListInfoByState(state, pageBean.getCurrentCount(), pageBean.getPageNum());
+        return list;
+    }
+
+    public List<TransportTrns> findAddressList(int transprotId) {
+        return transportMapper.findAddressList(transprotId);
+    }
 }

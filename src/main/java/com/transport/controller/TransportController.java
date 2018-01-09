@@ -159,4 +159,38 @@ public class TransportController {
         return map;
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/findListInfoByState")
+    public Result<List<InfoBean>> getInfo(int state, int page) {
+        Result<List<InfoBean>> result=new Result<List<InfoBean>>();
+        try {
+            List<InfoBean> infoListByState = transportService.findInfoListByState(state, page);
+            result.setCode(1);
+            result.setMsg("");
+            result.setData(infoListByState);
+        } catch (Exception e) {
+            result.setCode(0);
+            result.setMsg("获取数据失败");
+        }
+
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/findAdreesList")
+    public Result<List<TransportTrns>> getAddressList(int id) {
+        Result<List<TransportTrns>> result=new Result<List<TransportTrns>>();
+        try {
+            List<TransportTrns> addressList = transportService.findAddressList(id);
+            result.setData(addressList);
+            result.setCode(1);
+            result.setMsg("");
+        } catch (Exception e) {
+            result.setData(new ArrayList<TransportTrns>());
+            result.setCode(0);
+            result.setMsg("获取数据失败");
+        }
+
+        return result;
+    }
 }

@@ -6,9 +6,18 @@
         select t.id,t.gasoline_cost,t.road_cost,t.ferry_cost,t.weight,t.state,c.starting_place,c.ending_place,c.count,c.remark,c.name,c.phone,u.user_name from transport_info t LEFT JOIN transport_consigner_info c on t.id=c.transport_id  LEFT join user_information u on t.user_id=u.id where t.car_id=#{0}  and t.state!=2
         order by t.update_date desc limit #{1},#{2}
     </select>
+    <select id="findTransportListInfoByState"
+            resultType="com.transport.entity.InfoBean">
+        select t.id,t.gasoline_cost,t.road_cost,t.ferry_cost,t.weight,t.state,c.starting_place,c.ending_place,c.count,c.remark,c.name,c.phone,u.user_name from transport_info t LEFT JOIN transport_consigner_info c on t.id=c.transport_id  LEFT join user_information u on t.user_id=u.id where t.state=#{0}
+        order by t.update_date desc limit #{1},#{2}
+    </select>
 
     <select id="getCount" parameterType="com.transport.entity.TransportInfo" resultType="java.lang.Integer">
         select count(*) from transport_info where car_id=#{id} AND state!=2
+    </select>
+
+    <select id="getCountByState" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select count(*) from transport_info where state=#{state}
     </select>
 
     <insert id="insert" parameterType="com.transport.entity.TransportInfo" keyProperty="id" useGeneratedKeys="true">
@@ -39,4 +48,8 @@
     <update id="updateCost" parameterType="com.transport.entity.TransportInfo">
         UPDATE transport_info set gasoline_cost=#{gasoline_cost},road_cost=#{road_cost},ferry_cost=#{ferry_cost} WHERE id=#{id}
     </update>
+
+    <select id="findAddressList" parameterType="java.lang.Integer" resultType="com.transport.entity.TransportTrns">
+        SELECT * from transport_trns WHERE transport_id=#{id}
+    </select>
 </mapper>

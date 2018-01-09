@@ -28,6 +28,12 @@ public interface TransportMapper {
     TransportInfo findTransportInfoByCarId(int carId);
 
     void updateCost(TransportInfo transportInfo);
+
+    int getCountByState(int state);
+
+    List<InfoBean> findTransportListInfoByState(int state, int currentCount, int pageNum);
+
+    List<TransportTrns> findAddressList(int id);
 //
 //    Cost getMoneyCount(String carNumber) throws SQLException;
 //

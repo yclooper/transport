@@ -1,9 +1,6 @@
 package com.transport.service;
 
-import com.transport.entity.Cost;
-import com.transport.entity.InfoBean;
-import com.transport.entity.PageBean;
-import com.transport.entity.TransportInfo;
+import com.transport.entity.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -29,6 +26,10 @@ public interface TransportService {
     TransportInfo findTransportInfoByCarId(int carId);
 
     void updateCost(TransportInfo transportInfo);
+
+    List<InfoBean> findInfoListByState(int state, int page);
+
+    List<TransportTrns> findAddressList(int transportId);
 
 //
 //    Cost getMoneyCount(String carNumber) throws SQLException;
