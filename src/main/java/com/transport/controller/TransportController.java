@@ -152,6 +152,7 @@ public class TransportController {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             transportService.updateCost(transportInfo);
+            map.put("code", 1);
         } catch (Exception e) {
             map.put("code", 0);
         }

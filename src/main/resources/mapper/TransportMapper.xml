@@ -37,6 +37,6 @@
     </select>
 
     <update id="updateCost" parameterType="com.transport.entity.TransportInfo">
-        UPDATE transport_info set gasoline_cost=#{gasoline_cost},road_cost_total=#{road_cost_total},ferry_cost=#{ferry_cost} WHERE id=#{id}
+        UPDATE transport_info set gasoline_cost=#{gasoline_cost},road_cost=#{road_cost},ferry_cost=#{ferry_cost} WHERE id=#{id}
     </update>
 </mapper>
