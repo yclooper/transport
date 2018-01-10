@@ -36,7 +36,7 @@ public class TransportController {
         Map map = new HashMap<String, Object>();
 
         try {
-            List<InfoBean> infoBeans =  transportService.findTransportListInfoByCarId(car_id, page);
+            List<InfoBean> infoBeans = transportService.findTransportListInfoByCarId(car_id, page);
             map.put("list", infoBeans == null ? new ArrayList<InfoBean>() : infoBeans);
             map.put("code", 1);
         } catch (Exception e) {
@@ -51,8 +51,9 @@ public class TransportController {
     @Transactional
     @ResponseBody
     @RequestMapping(value = "/addAndEditInfoServlet")
-    public Map<String, Object> insert(@RequestBody InfoBean infoBean) {
-        Map<String, Object> map = new HashMap<String, Object>();
+    public Result<String> insert(@RequestBody InfoBean infoBean) {
+
+        Result<String> result = new Result<String>();
 
         try {
             TransportInfo transportInfo = new TransportInfo();
@@ -88,8 +89,9 @@ public class TransportController {
                 consigner.setTransport_id(transportInfo.getId());
                 consignerService.insert(consigner);
 
-                map.put("code", 1);
-
+                result.setCode(1);
+                result.setMsg("");
+                result.setData("操作成功");
             } else if (infoBean.getType() == 2) {//修改
                 transportInfo.setId(infoBean.getId());
                 transportInfo.setState(infoBean.getState());
@@ -103,13 +105,17 @@ public class TransportController {
                 consigner.setRemark(infoBean.getRemark());
                 consignerService.update(consigner);
 
-                map.put("code", 1);
+                result.setCode(1);
+                result.setMsg("");
+                result.setData("操作成功");
             }
         } catch (Exception e) {
-            map.put("code", 0);
+            result.setCode(0);
+            result.setData("操作失败");
+            result.setMsg("操作失败");
         }
 
-        return map;
+        return result;
     }
 
     @ResponseBody
@@ -134,29 +140,29 @@ public class TransportController {
 
     @ResponseBody
     @RequestMapping(value = "/updateLocation")
-    public Map<String, Object> updateLocation(int carId, String location) {
-
-        Map<String, Object> map = new HashMap<String, Object>();
+    public Result<String> updateLocation(int carId, String location) {
+        Result<String> result = new Result<String>();
         try {
             transportService.updateLocation(carId, location);
-            map.put("code", 1);
+            result.setCode(1);
         } catch (Exception e) {
-            map.put("code", 0);
+            result.setMsg("更新失败");
+            result.setCode(0);
         }
-        return map;
+        return result;
     }
 
     @ResponseBody
     @RequestMapping(value = "/updateCost")
-    public Map<String, Object> updateCost(@RequestBody TransportInfo transportInfo) {
-        Map<String, Object> map = new HashMap<String, Object>();
+    public Result<String> updateCost(@RequestBody TransportInfo transportInfo) {
+        Result<String> result = new Result<String>();
         try {
             transportService.updateCost(transportInfo);
-            map.put("code", 1);
+            result.setCode(1);
         } catch (Exception e) {
-            map.put("code", 0);
+            result.setCode(0);
         }
-        return map;
+        return result;
     }
 
     @ResponseBody
@@ -191,6 +197,22 @@ public class TransportController {
             result.setMsg("获取数据失败");
         }
 
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/findInfoBeanByCarId")
+    public Result<InfoBean> findInfoBeanByCarId(int carId) {
+        Result<InfoBean> result = new Result<InfoBean>();
+        try {
+            InfoBean infoBean = transportService.findInfoBeanByCarId(carId);
+            result.setCode(1);
+            result.setData(infoBean);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.setCode(0);
+            result.setMsg("请求失败");
+        }
         return result;
     }
 }

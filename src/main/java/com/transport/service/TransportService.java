@@ -31,6 +31,8 @@ public interface TransportService {
 
     List<TransportTrns> findAddressList(int transportId);
 
+    InfoBean findInfoBeanByCarId(int carId);
+
 //
 //    Cost getMoneyCount(String carNumber) throws SQLException;
 //

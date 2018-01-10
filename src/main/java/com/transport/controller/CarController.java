@@ -1,13 +1,17 @@
 package com.transport.controller;
 
 import com.transport.entity.Car;
+import com.transport.entity.Result;
+import com.transport.entity.User;
 import com.transport.service.CarService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,16 +27,20 @@ public class CarController {
 
     @ResponseBody
     @RequestMapping(value = "/findCarByCarNumber")
-    public Map<String, Object> findCarByCarNumber(String carNumber) {
+    public Result<Integer> findCarByCarNumber(String carNumber) {
 
-        Car car = carService.findCarByCarNumber(carNumber);
-        Map<String, Object> map = new HashMap<String, Object>();
-        if (car == null) {
-            map.put("code", 0);
-        } else {
-            map.put("code", 1);
-            map.put("car_id", car.getId());
+        Result<Integer> result = new Result<Integer>();
+        try {
+            Car car = carService.findCarByCarNumber(carNumber);
+            result.setMsg("");
+            result.setCode(1);
+            result.setData(car.getId());
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.setMsg("获取数据失败");
+            result.setCode(0);
+            result.setData(0);
         }
-        return map;
+        return result;
     }
 }

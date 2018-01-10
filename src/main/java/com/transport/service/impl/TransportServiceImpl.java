@@ -70,6 +70,10 @@ public class TransportServiceImpl implements TransportService {
         return list;
     }
 
+    public InfoBean findInfoBeanByCarId(int carId) {
+        return transportMapper.findInfoBeanByCarId(carId);
+    }
+
     public List<TransportTrns> findAddressList(int transprotId) {
         return transportMapper.findAddressList(transprotId);
     }

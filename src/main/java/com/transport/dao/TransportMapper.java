@@ -34,6 +34,8 @@ public interface TransportMapper {
     List<InfoBean> findTransportListInfoByState(int state, int currentCount, int pageNum);
 
     List<TransportTrns> findAddressList(int id);
+
+    InfoBean findInfoBeanByCarId(int carId);
 //
 //    Cost getMoneyCount(String carNumber) throws SQLException;
 //

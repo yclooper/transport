@@ -52,4 +52,8 @@
     <select id="findAddressList" parameterType="java.lang.Integer" resultType="com.transport.entity.TransportTrns">
         SELECT * from transport_trns WHERE transport_id=#{id}
     </select>
+
+    <select id="findInfoBeanByCarId" parameterType="java.lang.Integer" resultType="com.transport.entity.InfoBean">
+        select t.id,t.gasoline_cost,t.road_cost,t.ferry_cost,t.weight,t.state,c.starting_place,c.ending_place,c.count,c.remark,c.name,c.phone,u.user_name from transport_info t LEFT JOIN transport_consigner_info c on t.id=c.transport_id  LEFT join user_information u on t.user_id=u.id where t.car_id=#{carId}  and t.state=0
+    </select>
 </mapper>
