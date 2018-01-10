@@ -36,7 +36,7 @@ public class TransportController {
         Map map = new HashMap<String, Object>();
 
         try {
-            List<InfoBean> infoBeans = transportService.findTransportListInfoByCarId(car_id, page);
+            List<InfoBean> infoBeans =  transportService.findTransportListInfoByCarId(car_id, page);
             map.put("list", infoBeans == null ? new ArrayList<InfoBean>() : infoBeans);
             map.put("code", 1);
         } catch (Exception e) {
@@ -162,9 +162,9 @@ public class TransportController {
     @ResponseBody
     @RequestMapping(value = "/findListInfoByState")
     public Result<List<InfoBean>> getInfo(int state, int page) {
-        Result<List<InfoBean>> result=new Result<List<InfoBean>>();
+        Result<List<InfoBean>> result = new Result<List<InfoBean>>();
         try {
-            List<InfoBean> infoListByState = transportService.findInfoListByState(state, page);
+            List<InfoBean> infoListByState = transportService.findInfoListByState(state == 1 ? 2 : state, page);
             result.setCode(1);
             result.setMsg("");
             result.setData(infoListByState);
@@ -179,7 +179,7 @@ public class TransportController {
     @ResponseBody
     @RequestMapping(value = "/findAdreesList")
     public Result<List<TransportTrns>> getAddressList(int id) {
-        Result<List<TransportTrns>> result=new Result<List<TransportTrns>>();
+        Result<List<TransportTrns>> result = new Result<List<TransportTrns>>();
         try {
             List<TransportTrns> addressList = transportService.findAddressList(id);
             result.setData(addressList);
