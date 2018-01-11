@@ -11,6 +11,7 @@ import java.util.List;
 @Service
 public class CarServiceImpl implements CarService {
 
+
     @Resource
     private CarMapper carMapper;
 
@@ -29,6 +30,10 @@ public class CarServiceImpl implements CarService {
 
     public void update(Car car) {
         carMapper.update(car);
+    }
+
+    public void deleteCar(int id) {
+        carMapper.deleteCar(id);
     }
 
 }

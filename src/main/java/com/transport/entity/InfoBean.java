@@ -1,5 +1,7 @@
 package com.transport.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -70,6 +72,18 @@ public class InfoBean {
     private BigDecimal road_cost;
 
     private BigDecimal ferry_cost;
+
+
+    public Date getUpdate_date() {
+        return update_date;
+    }
+
+    public void setUpdate_date(Date update_date) {
+        this.update_date = update_date;
+    }
+
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
+    private Date update_date;
 
     public int getType() {
         return type;

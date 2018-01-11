@@ -32,4 +32,8 @@ public class UserServiceImpl implements UserService{
     public void update(User user) {
         userMapper.update(user);
     }
+
+    public void deleteUser(int id) {
+        userMapper.deleteUser(id);
+    }
 }

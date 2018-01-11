@@ -2,6 +2,8 @@ package com.transport.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.util.Date;
+
 
 /**
  * Created by chen on 2017/12/13.
@@ -14,7 +16,8 @@ public class TransportTrns {
 
     private String location_place;
 
-    private String create_date;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm",timezone = "GMT+8")
+    private Date create_date;
 
     public int getId() {
         return id;
@@ -51,12 +54,12 @@ public class TransportTrns {
         this.location_place = location_place;
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    public String getCreate_date() {
+
+    public Date getCreate_date() {
         return create_date;
     }
 
-    public void setCreate_date(String create_date) {
+    public void setCreate_date(Date create_date) {
         this.create_date = create_date;
     }
 }

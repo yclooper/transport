@@ -5,7 +5,7 @@
         select * from cars_information where car_number =#{no}
     </select>
     <select id="findAllCar" resultType="com.transport.entity.Car">
-        select * from cars_information
+        select * from cars_information WHERE del=0
     </select>
 
     <insert id="insert" parameterType="com.transport.entity.Car">
@@ -14,5 +14,9 @@
 
     <update id="update" parameterType="com.transport.entity.Car">
         UPDATE cars_information set car_number=#{car_number},car_state=#{car_state} where id=#{id}
+    </update>
+
+    <update id="deleteCar" parameterType="java.lang.Integer">
+        UPDATE cars_information set del=1 WHERE id=#{id}
     </update>
 </mapper>

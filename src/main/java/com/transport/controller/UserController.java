@@ -66,4 +66,21 @@ public class UserController {
 
         return result;
     }
+
+    @Transactional
+    @ResponseBody
+    @RequestMapping(value = "/deleteUser")
+    public Result<String> deleteCar(int id) {
+        Result<String> result = new Result<String>();
+
+        try {
+            userService.deleteUser(id);
+            result.setCode(1);
+            result.setMsg("操作成功");
+        } catch (Exception e) {
+            result.setCode(0);
+            result.setMsg("操作失败");
+        }
+        return result;
+    }
 }
