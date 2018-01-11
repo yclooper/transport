@@ -9,7 +9,7 @@ public class User {
 
     private String user_name;
 
-    private int car_id;
+    private int card_id;
 
     private String phone;
 
@@ -33,12 +33,12 @@ public class User {
         this.user_name = user_name;
     }
 
-    public int getCar_id() {
-        return car_id;
+    public int getCard_id() {
+        return card_id;
     }
 
-    public void setCar_id(int car_id) {
-        this.car_id = car_id;
+    public void setCard_id(int card_id) {
+        this.card_id = card_id;
     }
 
     public String getPhone() {
@@ -70,7 +70,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", user_name='" + user_name + '\'' +
-                ", card_no='" + car_id + '\'' +
+                ", card_id='" + card_id + '\'' +
                 ", phone='" + phone + '\'' +
                 ", link_address='" + link_address + '\'' +
                 ", del=" + del +

@@ -5,6 +5,8 @@ import com.transport.entity.Result;
 import com.transport.entity.User;
 import com.transport.service.CarService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -43,4 +45,42 @@ public class CarController {
         }
         return result;
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/carLists")
+    public Result<List<Car>> findAllCar() {
+        Result<List<Car>> result = new Result<List<Car>>();
+
+        try {
+            List<Car> allCar = carService.findAllCar();
+            result.setCode(1);
+            result.setData(allCar);
+        } catch (Exception e) {
+            result.setCode(0);
+            result.setMsg("获取数据失败");
+        }
+        return result;
+    }
+
+    @Transactional
+    @ResponseBody
+    @RequestMapping(value = "/addAndUpdateCar")
+    public Result<String> addAndUpdateCar(@RequestBody Car car) {
+        Result<String> result = new Result<String>();
+
+        try {
+            if (car.getId() != 0) {//修改
+                carService.update(car);
+            } else {
+                carService.insert(car);
+            }
+            result.setCode(1);
+            result.setMsg("操作成功");
+        } catch (Exception e) {
+            result.setCode(0);
+            result.setMsg("操作失败");
+        }
+        return result;
+    }
+
 }

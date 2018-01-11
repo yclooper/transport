@@ -13,4 +13,8 @@ public interface UserMapper {
     public List<User> findAllUser();
 
     User findUserByName(String name);
+
+    void update(User user);
+
+    void insert(User user);
 }

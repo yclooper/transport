@@ -4,6 +4,8 @@ import com.transport.entity.Result;
 import com.transport.entity.User;
 import com.transport.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,7 +25,7 @@ public class UserController {
     private UserService userService;
 
     @ResponseBody
-    @RequestMapping(value = "userLists")
+    @RequestMapping(value = "/userLists")
     public Result<List<User>> findUserList() {
 
         Result<List<User>> result = new Result<List<User>>();
@@ -39,6 +41,29 @@ public class UserController {
             result.setData(new ArrayList<User>());
 
         }
+        return result;
+    }
+
+    @Transactional
+    @ResponseBody
+    @RequestMapping(value = "/addAndUpdateuser")
+    public Result<String> addAndUpdateuser(@RequestBody User user) {
+        Result<String> result = new Result<String>();
+        try {
+            if (user.getId() == 0) {//新增
+                userService.insert(user);
+            } else {//修改
+                userService.update(user);
+            }
+            result.setCode(1);
+            result.setMsg("操作成功");
+            result.setData("");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.setCode(0);
+            result.setMsg("操作失败");
+        }
+
         return result;
     }
 }

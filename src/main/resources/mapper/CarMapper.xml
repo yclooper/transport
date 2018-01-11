@@ -4,4 +4,15 @@
     <select id="findCarByCarNumber" parameterType="java.lang.String" resultType="com.transport.entity.Car">
         select * from cars_information where car_number =#{no}
     </select>
+    <select id="findAllCar" resultType="com.transport.entity.Car">
+        select * from cars_information
+    </select>
+
+    <insert id="insert" parameterType="com.transport.entity.Car">
+        INSERT INTO cars_information (id,car_number,car_state,del) VALUES (#{id},#{car_number},#{car_state},#{del})
+    </insert>
+
+    <update id="update" parameterType="com.transport.entity.Car">
+        UPDATE cars_information set car_number=#{car_number},car_state=#{car_state} where id=#{id}
+    </update>
 </mapper>

@@ -12,4 +12,8 @@ public interface UserService {
     List<User> findAllUser();
 
     User findUserByName(String name);
+
+    void insert(User user);
+
+    void update(User user);
 }

@@ -8,4 +8,11 @@
         select * from user_information WHERE user_name=#{user_name}
     </select>
 
+    <insert id="insert" parameterType="com.transport.entity.User">
+        INSERT INTO user_information (id,user_name,card_id,phone,link_address,del) VALUES (#{id},#{user_name},#{card_id},#{phone},#{link_address},#{del})
+    </insert>
+
+    <update id="update" parameterType="com.transport.entity.User">
+        UPDATE user_information set user_name=#{user_name},card_id=#{card_id},phone=#{phone},link_address=#{link_address},del=#{del} WHERE id=#{id}
+    </update>
 </mapper>
