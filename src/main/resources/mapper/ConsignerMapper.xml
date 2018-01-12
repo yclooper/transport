@@ -11,10 +11,10 @@
             SELECT Last_insert_id()
         </selectKey>
         INSERT INTO transport_consigner_info (id,transport_id,starting_place,ending_place,count,remark,state,create_date,update_date,name,phone)
-        VALUES (#{id},#{transport_id},#{starting_place},#{ending_place},#{count},#{remark},#{state},#{create_date},#{update_date},#{name},#{phone})
+        VALUES (#{id},#{transport_id},#{starting_place},#{ending_place},#{count},#{remark},#{state},now(),now(),#{name},#{phone})
     </insert>
 
     <update id="update" parameterType="com.transport.entity.Consigner">
-        UPDATE transport_consigner_info set remark=#{remark},update_date=#{update_date} WHERE transport_id=#{transport_id};
+        UPDATE transport_consigner_info set remark=#{remark},update_date=now() WHERE transport_id=#{transport_id};
     </update>
 </mapper>

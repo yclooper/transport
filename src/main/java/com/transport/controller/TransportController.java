@@ -57,7 +57,6 @@ public class TransportController {
 
         try {
             TransportInfo transportInfo = new TransportInfo();
-            Date date = new Date();
             Consigner consigner = new Consigner();
             if (infoBean.getType() == 1) {//新增
                 transportInfo.setCar_id(infoBean.getCar_id());
@@ -71,8 +70,6 @@ public class TransportController {
                 transportInfo.setRoad_cost(infoBean.getRoad_cost());
                 transportInfo.setFerry_cost(infoBean.getFerry_cost());
                 transportInfo.setWeight(infoBean.getWeight());
-                transportInfo.setCreate_date(date);
-                transportInfo.setUpdate_date(date);
                 transportInfo.setState(infoBean.getState());
                 transportService.insert(transportInfo);
 
@@ -84,30 +81,23 @@ public class TransportController {
                 consigner.setName(infoBean.getName());
                 consigner.setPhone(infoBean.getPhone());
                 consigner.setRemark(infoBean.getRemark());
-                consigner.setCreate_date(date);
-                consigner.setUpdate_date(date);
                 consigner.setTransport_id(transportInfo.getId());
                 consignerService.insert(consigner);
 
                 result.setCode(1);
                 result.setMsg("");
-                result.setData("操作成功");
             } else if (infoBean.getType() == 2) {//修改
                 transportInfo.setId(infoBean.getId());
                 transportInfo.setState(infoBean.getState());
-                transportInfo.setUpdate_date(date);
 
                 transportService.update(transportInfo);
 
-
-                consigner.setUpdate_date(date);
                 consigner.setTransport_id(infoBean.getId());
                 consigner.setRemark(infoBean.getRemark());
                 consignerService.update(consigner);
 
                 result.setCode(1);
                 result.setMsg("");
-                result.setData("操作成功");
             }
         } catch (Exception e) {
             result.setCode(0);
