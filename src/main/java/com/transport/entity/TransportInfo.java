@@ -27,7 +27,7 @@ public class TransportInfo {
 
     private Date update_date;
 
-    private double weight;
+    private String weight;
 
     public Consigner getConsigner() {
         return consigner;
@@ -111,11 +111,11 @@ public class TransportInfo {
         this.update_date = update_date;
     }
 
-    public double getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 }

@@ -100,6 +100,7 @@ public class TransportController {
                 result.setMsg("");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             result.setCode(0);
             result.setData("操作失败");
             result.setMsg("操作失败");

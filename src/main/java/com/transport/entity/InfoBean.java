@@ -65,7 +65,7 @@ public class InfoBean {
 
     private String name;
 
-    private double weight;
+    private String weight;
 
     private BigDecimal gasoline_cost;
 
@@ -154,11 +154,11 @@ public class InfoBean {
         this.name = name;
     }
 
-    public double getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
