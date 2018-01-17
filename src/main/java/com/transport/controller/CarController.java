@@ -38,7 +38,6 @@ public class CarController {
             result.setCode(1);
             result.setData(car.getId());
         } catch (Exception e) {
-            e.printStackTrace();
             result.setMsg("获取数据失败");
             result.setCode(0);
             result.setData(0);

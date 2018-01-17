@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.transport.dao.CarMapper">
     <select id="findCarByCarNumber" parameterType="java.lang.String" resultType="com.transport.entity.Car">
-        select * from cars_information where car_number =#{no}
+        select * from cars_information where car_number =#{no} and del=0
     </select>
     <select id="findAllCar" resultType="com.transport.entity.Car">
         select * from cars_information WHERE del=0
